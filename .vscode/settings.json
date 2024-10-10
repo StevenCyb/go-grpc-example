@@ -1,0 +1,29 @@
+{
+  "cSpell.words": [
+    "durationcheck",
+    "errcheck",
+    "exportloopref",
+    "extendee",
+    "forcetypeassert",
+    "gofmt",
+    "gogrpc",
+    "gosimple",
+    "Idxs",
+    "ineffassign",
+    "makezero",
+    "nilerr",
+    "pancis",
+    "PKCS",
+    "predeclared",
+    "proto",
+    "protobuf",
+    "protoc",
+    "protoimpl",
+    "protoreflect",
+    "resps",
+    "staticcheck",
+    "tenv",
+    "unconvert",
+    "unparam"
+  ]
+}

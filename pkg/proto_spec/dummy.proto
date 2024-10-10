@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package demo;
+
+option go_package = "pkg/proto";
+
+message DemoRequest {
+  uint32 id = 1;
+}
+
+message DemoResponse {
+  uint32 result = 1;
+}
+
+service DemoService {
+  // Unary 
+  // C --> S
+  // C <-- S
+  rpc OneReqOneResp(DemoRequest) returns (DemoResponse) {};
+
+  // Server streaming
+  // C --> S (once at start)
+  // C < - S (stream)
+  rpc OneReqManyResp(DemoRequest) returns (stream DemoResponse) {};
+
+  // Client streaming
+  // C - > S (stream)
+  // C <-- S (once at end)
+  rpc ManyReqOneResp(stream DemoRequest) returns (DemoResponse) {};
+
+  // Bi-directional stream
+  // C - > S (stream)
+  // C < - S (stream)
+  rpc ManyReqManyResp(stream DemoRequest) returns (stream DemoResponse) {};
+
+  // Unary but that always fails with error `codes.InvalidArgument`
+  rpc UnaryFail(DemoRequest) returns (DemoResponse) {};
+
+  // Unary that will answer after 5 seconds
+  rpc UnaryDeadline(DemoRequest) returns (DemoResponse) {};
+}
