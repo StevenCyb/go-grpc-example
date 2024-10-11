@@ -30,12 +30,14 @@ func New(listen string, opt ...grpc.ServerOption) (*Server, error) {
 	time.Sleep(time.Millisecond * 100) // give the listener time to start
 
 	grpcServer := grpc.NewServer(opt...)
-	pb.RegisterDemoServiceServer(grpcServer, &Server{})
-
-	return &Server{
+	server := &Server{
 		grpcServer: grpcServer,
 		listener:   listener,
-	}, nil
+	}
+
+	pb.RegisterLCRServiceServer(grpcServer, server)
+
+	return server, nil
 }
 
 // NewTLS creates a new gRPC server with TLS.
